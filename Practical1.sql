@@ -1,35 +1,30 @@
 CREATE DATABASE ABC_Computer;
 
-USE ABC_Computer;
+CREATE TABLE Computer (SerialNumber BIGINT NOT NULL, Make VARCHAR(12) NOT NULL, Model VARCHAR(24) NOT NULL, ProcessorType VARCHAR(24) NULL, ProcessorSpeed DOUBLE(3,2) NOT NULL, MainMemory VARCHAR(15) NOT NULL, DiskSize VARCHAR(15) NOT NULL, PRIMARY KEY(SerialNumber));
 
-CREATE TABLE Computer (
-   ComputerID INT PRIMARY KEY,
-   Model VARCHAR(50),
-   Processor VARCHAR(50),
-   ProcessorSpeed FLOAT,
-   RAM INT,
-   Storage INT,
-   Price DECIMAL(10,2) );
-   
-   INSERT INTO Computer VALUES
-   (1, 'ModelA', 'Intel Core i7', 3.4, 16, 512, 1200.00),
-   (2, 'ModelB', 'Intel Core i5', 2.8, 8, 256, 800.00),
-   (3, 'ModelA', 'Intel Core i5', 2.8, 8, 256, 900.00),
-   (4, 'ModelB', 'Intel Core i3', 2.4, 4, 128, 500.00);
-   
-ALTER TABLE Computer
-ADD Graphics TEXT(40) NOT NULL COMMENT 'Must be all "Integrated Intel HD Graphics 4600"';
+SELECT*FROM Computer;
 
-ALTER TABLE Computer
-DROP COLUMN ProcessorSpeed;
+INSERT INTO Computer (SerialNumber, Make, Model, ProcessorType, ProcessorSpeed, MainMemory, DiskSize)
 
-UPDATE Computer SET Graphics = 'Integrated Intel HD Graphics 4600' WHERE ComputerID = 1;
-UPDATE Computer SET Graphics = 'Integrated Intel HD Graphics 4600' WHERE ComputerID = 2;
-UPDATE Computer SET Graphics = 'Integrated Intel HD Graphics 4600' WHERE ComputerID = 3;
-UPDATE Computer SET Graphics = 'Integrated Intel HD Graphics 4600' WHERE ComputerID = 4;
+VALUES (9871234, 'HP', 'Pavillion 500-210qe', 'Intel i5-4530', 3.00, '6.0 Gbytes', '1.0 Tbytes'),
+(9871245, 'HP', 'Pavillion 500-210qe', 'Intel i5-4531', 3.00, '6.0 Gbytes', '1.0 Tbytes'), 
+(9871256, 'HP', 'Pavillion 500-210qe', 'Intel i5-4532', 3.00, '6.0 Gbytes', '1.0 Tbytes'),
+(9871267, 'HP', 'Pavillion 500-210qe', 'Intel i5-4533', 3.00, '6.0 Gbytes', '1.0 Tbytes'),
+(9871278, 'HP', 'Pavillion 500-210qe', 'Intel i5-4534', 3.00, '6.0 Gbytes', '1.0 Tbytes'),
+(9871289, 'HP', 'Pavillion 500-210qe', 'Intel i5-4535', 3.00, '6.0 Gbytes', '1.0 Tbytes'),
+(6541001, 'Dell', 'OptiPlex 9020', 'Intel i7-4770', 3.00, '8.0 Gbytes', '1.0 Tbytes'),
+(6541002, 'Dell', 'OptiPlex 9021', 'Intel i7-4771', 3.00, '8.0 Gbytes', '1.0 Tbytes'),
+(6541003, 'Dell', 'OptiPlex 9022', 'Intel i7-4772', 3.00, '8.0 Gbytes', '1.0 Tbytes'),
+(6541004, 'Dell', 'OptiPlex 9023', 'Intel i7-4773', 3.00, '8.0 Gbytes', '1.0 Tbytes'),
+(6541005, 'Dell', 'OptiPlex 9024', 'Intel i7-4774', 3.00, '8.0 Gbytes', '1.0 Tbytes'),
+(6541006, 'Dell', 'OptiPlex 9025', 'Intel i7-4775', 3.00, '8.0 Gbytes', '1.0 Tbytes');
 
-SELECT * FROM Computer;
+SELECT * FROM Computer WHERE Make = 'Dell';
 
-SELECT * FROM Computer WHERE Model = 'ModelA';
+SELECT * FROM Computer WHERE Make = 'HP';
 
-SELECT * FROM Computer WHERE Model = 'ModelB';
+ALTER TABLE Computer ADD column Graphics VARCHAR(40) NOT NULL AFTER DiskSize;
+
+UPDATE Computer SET Graphics= 'Integrated Intel HD Graphics 4600';
+
+ALTER TABLE Computer DROP ProcessorSpeed;
